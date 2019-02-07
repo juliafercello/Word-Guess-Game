@@ -1,3 +1,5 @@
+var wordToGuess; 
+
 var wordGuess = {
     score: 0,
     tries: 12,
@@ -42,11 +44,14 @@ var wordGuess = {
 }
 
 //Capture the letter entered by the user and do stuff
-console.log(wordGuess.score);
-console.log(wordGuess.tries);
-console.log(wordGuess.currentWord());
+//select the word 
+wordToGuess = wordGuess.currentWord(); 
 
-document.getElementById("userScore").innerHTML = wordGuess.score;
+//console.log(wordGuess.score);
+//console.log(wordGuess.tries);
+//console.log(wordToGuess);
+
 document.getElementById("tries").innerHTML = wordGuess.tries;
-document.getElementById("word").innerHTML = wordGuess.currentWord();
+document.getElementById("word").innerHTML = wordToGuess;
+document.getElementById("userScore").innerHTML = wordGuess.score;
 

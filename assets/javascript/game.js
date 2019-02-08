@@ -1,5 +1,7 @@
 //Create global variable to hold the word to guess
 var wordToGuess; 
+var wordDiv = document.getElementById("wordDiv");
+var newDiv = document.createElement("div");
 
 //Main game object
 var wordGuess = {
@@ -49,13 +51,16 @@ var wordGuess = {
     //Prepopulate array with "_ " and show on the page
     prepGuesses: function () {
         var underscores = "_ ";
-        var wordDiv = document.getElementById("wordDiv");
         for (var i = 0; i < wordToGuess.length; i++) {
             this.rightLetters.push(underscores); 
-            var newDiv = document.createElement("div");
-            newDiv.textContent = this.rightLetters[i];
-            wordDiv.appendChild(newDiv);
-            console.log(this.rightLetters[i]);   
+            newDiv.textContent = newDiv.textContent + this.rightLetters[i];  
+        }
+        wordDiv.appendChild(newDiv);
+    },
+    showWord: function() {
+        newDiv.textContent = "";
+        for (var i = 0; i < wordToGuess.length; i++) {
+            newDiv.textContent = newDiv.textContent + this.rightLetters[i];  
         }
     }
 }
@@ -97,9 +102,12 @@ document.onkeyup = function (event) {
            if (keyPress === wordToGuess.charAt(i)) {
                 wordGuess.rightLetters[i] = wordToGuess.charAt(i);
                 console.log(wordGuess.rightLetters)
+                wordGuess.showWord(); 
                 //TODO need to print out the array... 
            }
         }
+        
+
         //check to see if they won
         var stillGuessing = wordGuess.rightLetters.includes("_ "); //TODO make this a variable??
         if (stillGuessing===false){

@@ -1,18 +1,20 @@
 //Create global variable to hold the word to guess
 var wordToGuess;
 
+//global variables for the page
 var wordDiv = document.getElementById("wordDiv");
 var newDiv = document.createElement("div");
 wordDiv.appendChild(newDiv);
 var wrongLettersDiv = document.getElementById("wrongLettersDiv");
+var animalImage = document.getElementById("winningImage");
 
 //Main game object
 var wordGuess = {
     score: 0,
     tries: 12,
-    wordList: ["one", "two", "boo", "three"],
+    wordList: ["aardvark", "gecko", "giraffe", "elephant", "butterfly", "chameleon", "llama", "mouse", "muskrat", "wombat"],
     wrongLetters: [],
-    rightLetters: [], 
+    rightLetters: [],
 
     //Reset Score to Zero
     resetScore: function () {
@@ -55,9 +57,7 @@ var wordGuess = {
     addGuessedLetter: function (letter) {
         if (this.wrongLetters.includes(letter) === false) {
             this.wrongLetters.push(letter);
-            console.log("wrong " + this.wrongLetters);
             var theWrongList = this.wrongLetters.join();
-            console.log("wrong " + theWrongList);
             wrongLettersDiv.textContent = theWrongList;
             this.decreaseTries();
         }
@@ -76,9 +76,18 @@ var wordGuess = {
     //Update the display on the page as the user guesses the letters 
     showWord: function () {
         var theWord = this.rightLetters.join("");
-        console.log("Progress: " + theWord);
         newDiv.textContent = theWord;
     },
+
+    //Set the image source attribute and show the matching animal in a bootstrap modal
+    //Pass in the title to communicate if the game is over or if the user guessed correctly
+    animalImageSource: function (title) {
+        document.getElementById("showAnimalTitle").innerHTML = title;
+        var imageSource = "assets/images/" + wordToGuess + ".jpg";
+        animalImage.setAttribute("src", imageSource);
+        $('#showAnimal').modal('show');
+    }
+
 }
 
 //Run the Game!!
@@ -88,9 +97,8 @@ wordToGuess = wordGuess.currentWord();
 //Show blanks on the page
 wordGuess.prepGuesses();
 
-//Display items on the page
+//Display remaining guesses and score on the page
 document.getElementById("tries").innerHTML = wordGuess.tries;
-document.getElementById("word").innerHTML = wordToGuess;
 document.getElementById("userScore").innerHTML = wordGuess.score;
 
 //Determine if the letter is in the word
@@ -101,14 +109,15 @@ document.onkeyup = function (event) {
         for (var i = 0; i < wordToGuess.length; i++) {
             if (keyPress === wordToGuess.charAt(i)) {
                 wordGuess.rightLetters[i] = wordToGuess.charAt(i);
-                console.log(wordGuess.rightLetters)
                 wordGuess.showWord();
             }
         }
-
         //check to see if they won
-        var stillGuessing = wordGuess.rightLetters.includes("_ "); //TODO make this a variable??
+        var stillGuessing = wordGuess.rightLetters.includes("_ ");
         if (stillGuessing === false) {
+            //show the matching animal
+            var modalTitleWin = "Great Guess!!"
+            wordGuess.animalImageSource(modalTitleWin);
             //increase score and reset with a new word.
             wordGuess.increaseScore();
             wordGuess.resetTries();
@@ -118,10 +127,11 @@ document.onkeyup = function (event) {
         }
     }
     else { //no match
-        wordGuess.addGuessedLetter(keyPress);
+        wordGuess.addGuessedLetter(keyPress.toUpperCase());
         //check to see if they lost and if so, restart the game.
         if (wordGuess.tries === 0) {
-            alert("Game Over!!");
+            var modalTitleLose = "GAME OVER!!"
+            wordGuess.animalImageSource(modalTitleLose);
             wordGuess.resetScore();
             wordGuess.resetTries();
             wordGuess.resetLetters();

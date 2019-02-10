@@ -1,29 +1,89 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <title>Hello, world!</title>
-  </head>
-  <body>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <h1>Press any key to get started!!</h1>
-    <h2 id = "word"></h2>
-    <h2 id = "userScore"></h2>   
-    <h2 id = "tries"></h2>
-    <div id = "wordDiv"></div>
-    <div id = "wrongLettersDiv"></div>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+  <title>Guess that Animal</title>
+</head>
+
+<body class="bg-light">
+  <nav class="navbar navbar-dark bg-info">
+    <span class="navbar-brand mb-0 h1">Guess that Animal!!</span>
+  </nav>
+  <div class="container border rounded my-3 bg-white">
+    <!--Row 1-->
+    <div class="row">
+      <div class="col-sm-12">
+        <p class="h4 mt-3 p-3 text-secondary border-bottom">Press any key to get started!</p>
+      </div>
+    </div>
+    <!--Row 2-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card bg-white text-secondary m-2 text-center">
+          <h4 class="card-title">Current Word</h4>
+          <div id="wordDiv"></div>
+        </div>
+      </div>
+    </div>
+    <!--Row 3-->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card bg-white text-secondary m-2 text-center">
+          <h4 class="card-title">Score:</h4>
+          <h2 id="userScore"></h2>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-white text-secondary m-2 text-center">
+          <h4 class="card-title">Guesses remaining:</h4>
+          <h2 id="tries"></h2>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-white text-secondary m-2 text-center">
+          <h4 class="card-title">Letters already guessed:</h4>
+          <div id="wrongLettersDiv"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="showAnimal" tabindex="-1" role="dialog" aria-labelledby="showAnimalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="showAnimalTitle">Great Guess!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="" alt="matching animal" id="winningImage" class="img-fluid">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script type="text/javascript" src="assets/javascript/game.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"></script>
+
 </body>
+
 </html>

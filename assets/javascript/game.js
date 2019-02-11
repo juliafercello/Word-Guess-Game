@@ -3,8 +3,7 @@ var wordToGuess;
 
 //global variables for the page
 var wordDiv = document.getElementById("wordDiv");
-var newDiv = document.createElement("div");
-wordDiv.appendChild(newDiv);
+var wordToGuessDiv = document.createElement("div");
 var wrongLettersDiv = document.getElementById("wrongLettersDiv");
 var animalImage = document.getElementById("winningImage");
 
@@ -35,7 +34,7 @@ var wordGuess = {
         wrongLettersDiv.textContent = "";
     },
 
-    //Decrease Tries by 1 and print out current score
+    //Decrease Tries by 1 
     decreaseTries: function () {
         this.tries = this.tries - 1;
         document.getElementById("tries").innerHTML = wordGuess.tries;
@@ -66,17 +65,17 @@ var wordGuess = {
     //Prepopulate array with "_ " and show on the page
     prepGuesses: function () {
         var underscores = "_ ";
-        newDiv.textContent = "";
+        wordToGuessDiv.textContent = "";
         for (var i = 0; i < wordToGuess.length; i++) {
             this.rightLetters.push(underscores);
-            newDiv.textContent = newDiv.textContent + this.rightLetters[i];
+            wordToGuessDiv.textContent = wordToGuessDiv.textContent + this.rightLetters[i];
         }
     },
 
     //Update the display on the page as the user guesses the letters 
     showWord: function () {
         var theWord = this.rightLetters.join("");
-        newDiv.textContent = theWord;
+        wordToGuessDiv.textContent = theWord;
     },
 
     //Set the image source attribute and show the matching animal in a bootstrap modal
@@ -95,6 +94,7 @@ var wordGuess = {
 wordToGuess = wordGuess.currentWord();
 
 //Show blanks on the page
+wordDiv.appendChild(wordToGuessDiv);
 wordGuess.prepGuesses();
 
 //Display remaining guesses and score on the page

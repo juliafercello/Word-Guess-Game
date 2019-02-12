@@ -56,7 +56,7 @@ var wordGuess = {
     addGuessedLetter: function (letter) {
         if (this.wrongLetters.includes(letter) === false) {
             this.wrongLetters.push(letter);
-            var theWrongList = this.wrongLetters.join();
+            var theWrongList = this.wrongLetters.join(" ");
             wrongLettersDiv.textContent = theWrongList;
             this.decreaseTries();
         }
